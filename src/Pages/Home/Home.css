@@ -1,0 +1,11 @@
+.banner {
+  background-image: url("https://i.pinimg.com/originals/ba/c2/e8/bac2e850e80ae97e7f3cba63a730626c.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  height: 30rem;
+  /* background-color: rgb(255, 252, 206); */
+}
+.carouselTitle {
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  font-size: 4rem;
+}
