@@ -67,7 +67,7 @@ const Review = () => {
             required
             style={{ outline: "none" }}
             className="m-2 p-2 rounded border-0 shadow w-75"
-            value={user?.displayName}
+            defaultValue={user?.displayName}
             {...register("name")}
           />
 

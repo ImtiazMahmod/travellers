@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Alert, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
   const [error, setError] = useState(false);
-  const { registerUser } = useAuth();
+  const { registerUser, logout } = useAuth();
 
   const {
     register,
@@ -22,6 +23,20 @@ const Register = () => {
     console.log(data);
     if (data.password === data.confirmPassword) {
       registerUser(email, password, name);
+
+      Swal.fire({
+        title: "Successfully Registered?",
+        text: "You are registered as Traveller",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Check!", "Verify your Email please.", "warning").then(() =>
+            logout()
+          );
+        }
+      });
       setError(false);
       reset();
     } else {
@@ -85,22 +100,12 @@ const Register = () => {
             </Button>
           </div>
           {/* error show */}
-          {error ? (
+          {error && (
             <p className="text-danger mt-2">
               <Alert variant="danger" className="w-50 mx-auto mt-2">
                 Password Not Matched
               </Alert>
             </p>
-          ) : (
-            <div>
-              {" "}
-              <Alert variant="success" className="w-50 mx-auto mt-2">
-                Successfully Registered as Traveller
-              </Alert>
-              <Alert variant="warning" className="w-50 mx-auto mt-2">
-                Verify your Email Address
-              </Alert>
-            </div>
           )}
           <hr className="w-50 mx-auto mt-5" />
           <h5>Have an Account?</h5>

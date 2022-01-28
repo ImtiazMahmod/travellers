@@ -4,10 +4,11 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { Button, Card } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 const SingleExperience = ({ experience }) => {
   console.log(experience.status);
-  //delete Order
+  //delete Experience
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -66,8 +67,10 @@ const SingleExperience = ({ experience }) => {
         </p>
       </Card.Body>
       <Card.Body className="d-flex justify-content-between">
-        <Link to={`/blogDetail/${experience?._id}`}>
-          <Button variant="warning ">Details</Button>
+        <Link to={`/dashboard/editBlog/${experience?._id}`}>
+          <Button variant="warning ">
+            <FaEdit /> Edit
+          </Button>
         </Link>
         <Button onClick={() => handleDelete(experience?._id)} variant="danger">
           <MdDelete />

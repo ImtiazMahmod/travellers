@@ -17,6 +17,7 @@ const Comment = ({ children }) => {
     formState: { errors },
     reset,
   } = useForm();
+
   const date = new Date().toISOString().substring(0, 10);
   const [rate, setRate] = useState(2);
   const onSubmit = (data) => {

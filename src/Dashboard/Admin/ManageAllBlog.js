@@ -4,6 +4,9 @@ import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
+import { FaEdit, FaReadme } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 const ManageAllBlog = () => {
   const [blogs, setBlogs] = useState([]);
   ///load all orders
@@ -48,6 +51,8 @@ const ManageAllBlog = () => {
             <Th>Cost</Th>
             <Th>Rating</Th>
             <Th>Delete</Th>
+            <Th>Edit</Th>
+            <Th>Detail</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -58,7 +63,23 @@ const ManageAllBlog = () => {
               <Td className="text-center">{blog?.cost}</Td>
               <Td className="text-center">{blog?.rating}</Td>
               <Td>
-                <AiFillDelete onClick={() => handleDelete(blog?._id)} />
+                <Button variant="danger ">
+                  <AiFillDelete onClick={() => handleDelete(blog?._id)} />
+                </Button>
+              </Td>
+              <Td>
+                <Link to={`/dashboard/editBlog/${blog?._id}`}>
+                  <Button variant="warning ">
+                    <FaEdit />
+                  </Button>
+                </Link>
+              </Td>
+              <Td>
+                <Link to={`/blogDetail/${blog?._id}`}>
+                  <Button variant="info ">
+                    <FaReadme />
+                  </Button>
+                </Link>
               </Td>
             </Tr>
           ))}

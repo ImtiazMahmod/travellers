@@ -39,14 +39,16 @@ const useFirebase = () => {
   }, []);
 
   ///sign in with email and password
-  const userLogin = (email, password) => {
+  const userLogin = (email, password, navigate, redirect_uri) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        setError("");
+        // ...
+        navigate(redirect_uri);
       })
+
       .catch((error) => {
         setError(error.message);
       })
@@ -82,7 +84,6 @@ const useFirebase = () => {
         };
         newUserInfo(newUser);
         setError("");
-        logout();
       })
       .catch((error) => {
         setError(error.message);
@@ -102,11 +103,9 @@ const useFirebase = () => {
   };
   ///user info post to server
   const newUserInfo = (newUser) => {
-    axios
-      .post("https://arcane-peak-89690.herokuapp.com/users", newUser)
-      .then((res) => {
-        ///save to database
-      });
+    axios.post("http://localhost:5000/users", newUser).then((res) => {
+      ///save to database
+    });
   };
 
   ///update user profile

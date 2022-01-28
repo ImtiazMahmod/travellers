@@ -8,7 +8,7 @@ const SingleBlog = ({ blog }) => {
   return (
     <div>
       <Card className="tourCard border-0 shadow">
-        <Link className="text-decoration-none" to={`/tour/${blog?._id}`}>
+        <Link className="text-decoration-none" to={`/blogDetail/${blog?._id}`}>
           <div>
             <Card.Img
               style={{ height: "200px" }}

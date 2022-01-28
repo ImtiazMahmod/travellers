@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import useAuth from "../../Hooks/useAuth";
 import Experience from "../../Pages/SingleBlogDetails/Experience";
-import SingleExperience from "./SingleExperience";
 
 const MyExperience = () => {
   const [myExperience, SetMyExperience] = useState();
@@ -27,14 +26,14 @@ const MyExperience = () => {
       </h3>
       <Container className="d-flex justify-content-center">
         <Row>
-          {myExperience ? (
+          {myExperience?.length ? (
             myExperience?.map((experience) => (
               <Col key={experience._id} item xs={12} sm={12} md={12} lg={6}>
                 <Experience experience={experience}></Experience>
               </Col>
             ))
           ) : (
-            <Alert className=" mt-2">You have No Experience.</Alert>
+            <p className="text-secondary mt-2">You have No Experience.</p>
           )}
         </Row>
       </Container>

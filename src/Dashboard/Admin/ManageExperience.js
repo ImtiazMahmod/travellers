@@ -13,7 +13,6 @@ const ManageExperience = () => {
         setExperiences(res.data);
       });
   }, [experiences]);
-  console.log(experiences);
   return (
     <div>
       <h3 className=" fw-bold text-center">

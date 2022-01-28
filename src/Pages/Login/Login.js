@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
-  const { user, userLogin, error, googleLogin } = useAuth();
+  const { userLogin, error, googleLogin } = useAuth();
   //redirect to user destination
   const location = useLocation();
   const redirect_uri = location?.state?.from || "/";
@@ -26,7 +26,7 @@ const Login = () => {
     const email = data.email;
     const password = data.password;
     console.log(data);
-    userLogin(email, password);
+    userLogin(email, password, navigate, redirect_uri);
   };
   return (
     <div className="text-center">
