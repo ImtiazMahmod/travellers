@@ -102,9 +102,11 @@ const useFirebase = () => {
   };
   ///user info post to server
   const newUserInfo = (newUser) => {
-    axios.post("http://localhost:5000/users", newUser).then((res) => {
-      ///save to database
-    });
+    axios
+      .post("https://arcane-peak-89690.herokuapp.com/users", newUser)
+      .then((res) => {
+        ///save to database
+      });
   };
 
   ///update user profile
@@ -139,7 +141,7 @@ const useFirebase = () => {
   //check admin
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/admin/${user?.email}`)
+      .get(`https://arcane-peak-89690.herokuapp.com/users/admin/${user?.email}`)
       .then((res) => {
         console.log(res.data, admin);
         if (res.data.admin) {

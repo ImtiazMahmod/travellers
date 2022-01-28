@@ -21,28 +21,30 @@ const MakeAdmin = ({ children }) => {
   const onSubmit = (data) => {
     console.log(data);
     ///post for book experience
-    axios.put("http://localhost:5000/makeAdmin", data).then((res) => {
-      if (res.data.modifiedCount) {
-        Swal.fire({
-          title: "Admin has made",
-          text: "Traveller as Admin.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-        });
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "Try Again.",
-          icon: "error",
-          showCancelButton: false,
-          confirmButtonColor: "#3085d6",
-          // cancelButtonColor: "#3085d6",
-          confirmButtonText: "ok",
-        });
-      }
-      reset();
-    });
+    axios
+      .put("https://arcane-peak-89690.herokuapp.com/makeAdmin", data)
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: "Admin has made",
+            text: "Traveller as Admin.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK",
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Try Again.",
+            icon: "error",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            // cancelButtonColor: "#3085d6",
+            confirmButtonText: "ok",
+          });
+        }
+        reset();
+      });
   };
 
   return (

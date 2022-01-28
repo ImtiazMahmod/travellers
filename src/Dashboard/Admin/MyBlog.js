@@ -11,7 +11,9 @@ const MyBlog = () => {
   ///load all orders
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myBlog?name=${user?.displayName}`)
+      .get(
+        `https://arcane-peak-89690.herokuapp.com/myBlog?name=${user?.displayName}`
+      )
       .then((res) => {
         setBlogs(res.data);
       });

@@ -29,18 +29,20 @@ const Comment = ({ children }) => {
     data.rating = rate;
     console.log(data);
     ///post for book experience
-    axios.post("http://localhost:5000/userExperience", data).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: "Experience Added",
-          text: "Experience added to Website.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-        });
-        reset();
-      }
-    });
+    axios
+      .post("https://arcane-peak-89690.herokuapp.com/userExperience", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Experience Added",
+            text: "Experience added to Website.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK",
+          });
+          reset();
+        }
+      });
   };
 
   return (

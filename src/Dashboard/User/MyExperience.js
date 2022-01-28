@@ -12,7 +12,9 @@ const MyExperience = () => {
   //load specific user orders
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myExperience?email=${user?.email}`)
+      .get(
+        `https://arcane-peak-89690.herokuapp.com/myExperience?email=${user?.email}`
+      )
       .then((res) => SetMyExperience(res.data));
   }, [myExperience]);
 

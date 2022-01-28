@@ -7,9 +7,11 @@ const ManageExperience = () => {
   const [experiences, setExperiences] = useState([]);
   ///load all orders
   useEffect(() => {
-    axios.get("http://localhost:5000/allExperience").then((res) => {
-      setExperiences(res.data);
-    });
+    axios
+      .get("https://arcane-peak-89690.herokuapp.com/allExperience")
+      .then((res) => {
+        setExperiences(res.data);
+      });
   }, [experiences]);
   console.log(experiences);
   return (

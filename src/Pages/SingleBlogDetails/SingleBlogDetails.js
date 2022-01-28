@@ -25,7 +25,9 @@ const SingleBlogDetails = () => {
   ///load specific Experience
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/specificExperience?title=${blog?.title}`)
+      .get(
+        `https://arcane-peak-89690.herokuapp.com/specificExperience?title=${blog?.title}`
+      )
       .then((res) => {
         setSpecificExperience(res.data);
       });

@@ -22,7 +22,9 @@ const Experience = ({ experience }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/deleteExperience/${id}`)
+          .delete(
+            `https://arcane-peak-89690.herokuapp.com/deleteExperience/${id}`
+          )
           .then((res) => {
             if (res.data.deletedCount) {
               Swal.fire("Deleted!", " Experience has been deleted.", "success");
