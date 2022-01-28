@@ -103,9 +103,11 @@ const useFirebase = () => {
   };
   ///user info post to server
   const newUserInfo = (newUser) => {
-    axios.post("http://localhost:5000/users", newUser).then((res) => {
-      ///save to database
-    });
+    axios
+      .post("https://arcane-peak-89690.herokuapp.com/users", newUser)
+      .then((res) => {
+        ///save to database
+      });
   };
 
   ///update user profile

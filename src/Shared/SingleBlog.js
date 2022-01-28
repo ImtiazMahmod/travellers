@@ -41,7 +41,7 @@ const SingleBlog = ({ blog }) => {
             {blog?.experience.slice(0, 50)}...
           </Card.Text>
           <Link to={`/blogDetail/${blog?._id}`}>
-            <Button variant="outline-secondary">Book Now</Button>
+            <Button variant="outline-secondary">Read More</Button>
           </Link>
         </Card.Body>
       </Card>

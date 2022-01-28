@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import SingleBlog from "../../../Shared/SingleBlog";
-import ReactPaginate from "react-paginate";
 
-const HomeBlog = ({ itemsPerPage }) => {
+const HomeBlog = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [blogs, setBlogs] = useState([]);

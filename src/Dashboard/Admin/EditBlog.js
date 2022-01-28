@@ -39,7 +39,10 @@ const EditBlog = () => {
 
     ///Update blog to server
     axios
-      .put(`http://localhost:5000/singleBlog/${experienceId}`, data)
+      .put(
+        `https://arcane-peak-89690.herokuapp.com/singleBlog/${experienceId}`,
+        data
+      )
       .then((res) => {
         //bike added
         if (res.data.modifiedCount) {

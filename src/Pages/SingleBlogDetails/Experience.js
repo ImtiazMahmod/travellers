@@ -42,7 +42,7 @@ const Experience = ({ experience }) => {
     ///update status
     axios
       .put(
-        `http://localhost:5000/experience?id=${experience?._id}&status=${changeStatus}`
+        `https://arcane-peak-89690.herokuapp.com/experience?id=${experience?._id}&status=${changeStatus}`
       )
       .then((res) => {
         setNewStatus(changeStatus);
