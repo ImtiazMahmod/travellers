@@ -7,10 +7,12 @@ import TravellersInfo from "../../Shared/TravellersInfo";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Comment from "./Comment";
 import { HiLocationMarker } from "react-icons/hi";
+import Experience from "./Experience";
 
 const SingleBlogDetails = () => {
   const { blogId } = useParams();
   const [blog, setBlog] = useState({});
+  const [specificExperience, setSpecificExperience] = useState([]);
   ///load specific blog
   useEffect(() => {
     axios
@@ -19,7 +21,16 @@ const SingleBlogDetails = () => {
         setBlog(res.data);
       });
   }, [blogId]);
-  console.log(blog);
+
+  ///load specific Experience
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/specificExperience?title=${blog?.title}`)
+      .then((res) => {
+        setSpecificExperience(res.data);
+      });
+  }, [specificExperience, blog?.title]);
+  console.log(specificExperience.length);
   return (
     <div>
       <Container className="my-5">
@@ -55,9 +66,7 @@ const SingleBlogDetails = () => {
                   <h5 className="mt-3 fw-bold text-secondary">{blog?.name}</h5>
                   <p className="text-secondary">{blog?.date}</p>
                 </div>
-                {/* <h5 className="my-3 fw-bold text-secondary">
-                  Traveller Experience
-                </h5> */}
+
                 <p className="text-secondary">{blog?.experience}</p>
               </div>
             </div>
@@ -65,6 +74,19 @@ const SingleBlogDetails = () => {
               {" "}
               <TravellersInfo blog={blog} />
             </div>
+            <h5 className="mb-3 fw-bold text-secondary border-bottom pb-2">
+              Travellers Experience
+            </h5>
+            {specificExperience.length ? (
+              specificExperience?.map((experience) => (
+                <Experience
+                  key={experience?._id}
+                  experience={experience}
+                ></Experience>
+              ))
+            ) : (
+              <p className="text-secondary">No Experience </p>
+            )}
             <Comment>{blog}</Comment>
           </Col>
           <Col sm={12} md={4} lg={4}></Col>

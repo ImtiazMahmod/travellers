@@ -1,15 +1,12 @@
-import React from "react";
-import { Button, Container } from "react-bootstrap";
+import React, { useState } from "react";
+import { Alert, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
-  const { user, newUser, setName, error, setEmail, setPassword } = useAuth();
-  //   //redirect to user destination
-  //   const location = useLocation();
-  //   const redirect_uri = location?.state?.from || "/";
-  //   const navigate = useNavigate();
+  const [error, setError] = useState(false);
+  const { registerUser } = useAuth();
 
   const {
     register,
@@ -17,20 +14,25 @@ const Register = () => {
     formState: { errors },
     reset,
   } = useForm();
+
   const onSubmit = (data) => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    setName(name);
-    setEmail(email);
-    setPassword(password);
-    // console.log(data);
-    newUser();
+    console.log(data);
+    if (data.password === data.confirmPassword) {
+      registerUser(email, password, name);
+      setError(false);
+      reset();
+    } else {
+      setError(true);
+    }
   };
+  console.log(error);
 
   return (
     <div className="text-center">
-      <Container style={{ height: "33rem" }}>
+      <Container>
         <h3 className="fw-bold text-secondary my-3">
           Register as <span className="primaryColor">Traveller</span>
         </h3>
@@ -71,7 +73,7 @@ const Register = () => {
               style={{ outline: "none" }}
               placeholder="confirm password"
               className="m-2 p-2 rounded border-1  w-50"
-              {...register("password")}
+              {...register("confirmPassword")}
             />{" "}
             <br />
             <Button
@@ -82,6 +84,24 @@ const Register = () => {
               Register
             </Button>
           </div>
+          {/* error show */}
+          {error ? (
+            <p className="text-danger mt-2">
+              <Alert variant="danger" className="w-50 mx-auto mt-2">
+                Password Not Matched
+              </Alert>
+            </p>
+          ) : (
+            <div>
+              {" "}
+              <Alert variant="success" className="w-50 mx-auto mt-2">
+                Successfully Registered as Traveller
+              </Alert>
+              <Alert variant="warning" className="w-50 mx-auto mt-2">
+                Verify your Email Address
+              </Alert>
+            </div>
+          )}
           <hr className="w-50 mx-auto mt-5" />
           <h5>Have an Account?</h5>
           <Link to="/login">

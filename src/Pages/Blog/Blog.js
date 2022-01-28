@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
-import SingleBlog from "../../../Shared/SingleBlog";
-import ReactPaginate from "react-paginate";
 
-const HomeBlog = ({ itemsPerPage }) => {
+import ReactPaginate from "react-paginate";
+import SingleBlog from "../../Shared/SingleBlog";
+
+const Blog = ({ itemsPerPage }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [blogs, setBlogs] = useState([]);
@@ -50,4 +51,4 @@ const HomeBlog = ({ itemsPerPage }) => {
   );
 };
 
-export default HomeBlog;
+export default Blog;

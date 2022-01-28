@@ -12,14 +12,12 @@ import {
 } from "firebase/auth";
 import { Alert } from "bootstrap";
 import initAuth from "../Pages/Login/firebase.init";
+import axios from "axios";
 
 initAuth();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [admin, setAdmin] = useState(false);
   const auth = getAuth();
@@ -41,20 +39,18 @@ const useFirebase = () => {
   }, []);
 
   ///sign in with email and password
-  const login = (navigate, redirect_Uri) => {
+  const userLogin = (email, password) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        setUser(result.user);
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
         setError("");
-        // history.go(0);
-        navigate.push(redirect_Uri);
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
+        setError(error.message);
       })
-      .finally(setIsLoading(false));
+      .finally(() => setIsLoading(false));
   };
 
   ///google login
@@ -70,22 +66,31 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  ///signUp user
-  console.log(email);
-  const newUser = () => {
+  ///new User register
+  const registerUser = (email, password, name) => {
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        setUser(result.user);
-        // updateUser();
-        // verifyEmail(result.user);
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        verifyEmail();
+        updateUser(name);
+        const newUser = {
+          displayName: name,
+          email: user.email,
+        };
+        newUserInfo(newUser);
         setError("");
-        // navigate("/home");
-        ///solution for auto login after registration
-        /// reload window
-        // window.location.reload();
-        // logout();
+        logout();
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        setError(error.message);
+        // ..
+      })
+      .finally(() => {
+        setIsLoading(true);
+      });
   };
   console.log(user);
 
@@ -95,13 +100,18 @@ const useFirebase = () => {
       return "verify";
     });
   };
+  ///user info post to server
+  const newUserInfo = (newUser) => {
+    axios.post("http://localhost:5000/users", newUser).then((res) => {
+      ///save to database
+    });
+  };
+
   ///update user profile
 
-  const updateUser = () => {
+  const updateUser = (name) => {
     updateProfile(auth.currentUser, {
       displayName: name,
-      email: email,
-      password: password,
       photoURL: "https://i.ibb.co/CQWnXtz/profile-user.png",
     })
       .then(() => {
@@ -126,17 +136,28 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  //check admin
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/users/admin/${user?.email}`)
+      .then((res) => {
+        console.log(res.data, admin);
+        if (res.data.admin) {
+          setAdmin(true);
+        }
+      });
+  }, [user?.email, admin]);
+
   return {
     user,
-    login,
+    admin,
+    userLogin,
     isLoading,
     googleLogin,
     setIsLoading,
-    setEmail,
-    setName,
-    setPassword,
     error,
-    newUser,
+    registerUser,
+    setError,
 
     logout,
   };

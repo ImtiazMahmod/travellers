@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       {/* <HomeBanner></HomeBanner> */}
       <HomeCarousel></HomeCarousel>
-      <HomeBlog></HomeBlog>
+      <HomeBlog itemsPerPage={5}></HomeBlog>
     </div>
   );
 };

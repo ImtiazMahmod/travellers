@@ -28,8 +28,8 @@ const Navigation = () => {
             <Nav.Link as={Link} to="/about">
               About Us
             </Nav.Link>
-            <Nav.Link as={Link} to="/tourPackages">
-              Tours
+            <Nav.Link as={Link} to="/blog">
+              Blog
             </Nav.Link>
             <Nav.Link as={Link} to="/contact">
               Contact Us
@@ -47,7 +47,10 @@ const Navigation = () => {
                         width="40"
                         height="40"
                         className=" rounded-circle"
-                        src={user?.photoURL}
+                        src={
+                          user?.photoURL ||
+                          "https://i.ibb.co/CQWnXtz/profile-user.png"
+                        }
                         alt=""
                       />
                       <p className="primaryColor fw-bold m-2">

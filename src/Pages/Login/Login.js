@@ -8,30 +8,25 @@ import { useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
-  const { user, login, setUser, error, googleLogin } = useAuth();
+  const { user, userLogin, error, googleLogin } = useAuth();
   //redirect to user destination
   const location = useLocation();
   const redirect_uri = location?.state?.from || "/";
   const navigate = useNavigate();
-  console.log(redirect_uri, user.email);
+  // console.log(redirect_uri, user.email);
   ///handleGoogle LOgin
   const handleGoogleLogin = () => {
     googleLogin(navigate, redirect_uri);
   };
 
   const inputStyle = " mb-4 p-2 rounded border-1 ";
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
     console.log(data);
-    login(email, password);
+    userLogin(email, password);
   };
   return (
     <div className="text-center">
@@ -96,11 +91,6 @@ const Login = () => {
                 Login
               </Button>
             </form>{" "}
-            {/* <img
-              className="rounded img-fluid"
-              src="https://ak.picdn.net/shutterstock/videos/19615252/thumb/1.jpg"
-              alt=""
-            /> */}
           </Col>
         </Row>
       </Container>
