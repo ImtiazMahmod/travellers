@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       {/* <HomeBanner></HomeBanner> */}
       <Row>
-        <Col md={3} lg={2} className=" d-sm-none d-md-block">
+        <Col md={3} lg={2} className=" d-none d-md-block">
           <HomeSidebar></HomeSidebar>
         </Col>
         <Col md={9} lg={10}>

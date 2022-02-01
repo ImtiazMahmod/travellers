@@ -15,7 +15,7 @@ const TravellersInfo = ({ blog }) => {
           >
             <FaClock className="primaryColor fs-2" />
 
-            <div className="mx-2">
+            <div className="mx-3 text-start">
               <h5>Duration</h5>
               <p>{blog?.category}</p>
             </div>
@@ -26,8 +26,8 @@ const TravellersInfo = ({ blog }) => {
             lg={3}
             className="d-flex align-items-center info mx-auto p-2"
           >
-            <FaWalking className="primaryColor fs-2 " />
-            <div className="mx-2">
+            <FaWalking className="primaryColor fs-1 " />
+            <div className="mx-3 text-start">
               <h5>Transportation</h5>
               <p>{blog?.transport}</p>{" "}
             </div>
@@ -39,8 +39,8 @@ const TravellersInfo = ({ blog }) => {
             lg={3}
             className="d-flex  align-items-center info mx-auto p-2"
           >
-            <FaUsersCog className="primaryColor fs-2" />
-            <div className="mx-2">
+            <FaUsersCog className="primaryColor fs-1" />
+            <div className="mx-3 text-start">
               <h5>Group Size</h5>
               <p>30 People</p>
             </div>
@@ -51,8 +51,8 @@ const TravellersInfo = ({ blog }) => {
             lg={3}
             className="d-flex align-items-center info mx-auto p-2"
           >
-            <FaLanguage className="primaryColor fs-2 " />
-            <div className="mx-2">
+            <FaLanguage className="primaryColor fs-1 " />
+            <div className="mx-3 text-start">
               <h5>Languages</h5>
               <p>Bangla, English</p>
             </div>

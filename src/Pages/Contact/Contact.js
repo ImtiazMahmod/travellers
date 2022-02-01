@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
 import { IoMdSend } from "react-icons/io";
@@ -43,12 +43,12 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      <div className=" my-5 text-center">
-        <h1 className="p-3 fw-bold">
+    <Container className="text-center w-75">
+      <div className=" my-5 ">
+        <h2 className="p-3 fw-bold">
           <span className="primaryColor">Get </span>
           in Touch
-        </h1>
+        </h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -83,11 +83,11 @@ const Contact = () => {
           </div>
           <Button type="submit" variant="secondary">
             {" "}
-            SEND MESSAGE <IoMdSend />
+            SEND <IoMdSend />
           </Button>
         </form>
       </div>
-    </div>
+    </Container>
   );
 };
 

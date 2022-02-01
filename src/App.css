@@ -16,3 +16,11 @@
   left: 50%;
   transform: 50% 50%;
 }
+
+.bot {
+  position: fixed;
+  right: 1%;
+  bottom: 1%;
+
+  cursor: pointer;
+}

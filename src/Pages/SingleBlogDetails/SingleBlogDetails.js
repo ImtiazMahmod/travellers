@@ -79,15 +79,19 @@ const SingleBlogDetails = () => {
             <h5 className="mb-3 fw-bold text-secondary border-bottom pb-2">
               Travellers Experience
             </h5>
-            {specificExperience?.map((experience) =>
-              experience?.status === "Approved" ? (
-                <Experience
-                  key={experience?._id}
-                  experience={experience}
-                ></Experience>
-              ) : (
-                <p className="text-secondary">No Experience </p>
+            {specificExperience.length ? (
+              specificExperience?.map((experience) =>
+                experience?.status === "Approved" ? (
+                  <Experience
+                    key={experience?._id}
+                    experience={experience}
+                  ></Experience>
+                ) : (
+                  <p className="text-secondary">No Experience </p>
+                )
               )
+            ) : (
+              <p className="text-secondary">No Experience </p>
             )}
             <Comment>{blog}</Comment>
           </Col>

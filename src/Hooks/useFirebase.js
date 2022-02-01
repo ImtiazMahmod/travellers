@@ -61,6 +61,7 @@ const useFirebase = () => {
     return signInWithPopup(auth, provider)
       .then((result) => {
         // setUser(result.user);
+
         console.log(result.user);
         navigate(redirect_uri);
       })

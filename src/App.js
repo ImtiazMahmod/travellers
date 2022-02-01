@@ -22,7 +22,11 @@ import MakeAdmin from "./Dashboard/Admin/MakeAdmin";
 import EditBlog from "./Dashboard/Admin/EditBlog";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
+import { Modal } from "react-bootstrap";
+import { useState } from "react";
+import ChatBot from "./ChatBot";
 function App() {
+  const [show, setShow] = useState(false);
   return (
     <AuthProvider className="App">
       <BrowserRouter>
@@ -120,7 +124,26 @@ function App() {
             ></Route>
           </Route>
         </Routes>
+        {/*   <div>
+          <iframe
+            src="https://webchat.botframework.com/embed/NSTU-Now?s=F7NrWOGozp0.CNNwV920RZAoK05USaCAjGc7plkIp-TB1ykAlb2sHT8"
+            style={{ minWidth: " 400px", width: "100%", minHeight: "500px" }}
+            title="NSTUNow"
+          >
+            title
+          </iframe>
+        </div> */}
+
         <Footer></Footer>
+        <div className="bot">
+          <img
+            onClick={setShow}
+            width={70}
+            src="https://i.ibb.co/g91kWCx/chatbotbuilder-logo.png"
+            alt="NSTUNow"
+          />
+          <ChatBot show={show} setShow={setShow} />
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );

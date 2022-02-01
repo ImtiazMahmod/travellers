@@ -30,69 +30,55 @@ const Login = () => {
   };
   return (
     <div className="text-center">
-      <Container style={{ height: "33rem" }}>
-        <Row>
-          <Col
-            className=" d-flex justify-content-center align-items-center"
-            sm={12}
-            md={5}
-            lg={5}
+      <Container className="w-50">
+        <h3 className="fw-bold text-secondary">Welcome Back !</h3>
+        <p>Lets Get you Logged in</p>
+        <form
+          className="d-flex flex-column  "
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <input
+            className={inputStyle}
+            type="email"
+            style={{ outline: "none" }}
+            placeholder="Your Email"
+            required
+            {...register("email")}
+          />
+
+          <input
+            className={inputStyle}
+            type="password"
+            placeholder="Your Password"
+            required
+            style={{ outline: "none" }}
+            {...register("password")}
+          />
+
+          {/* error show */}
+          {error ? <p className="text-danger mt-2">{error}</p> : ""}
+          <Button type="submit" variant="outline-warning">
+            Login
+          </Button>
+        </form>{" "}
+        <div>
+          <h5 className="fw-bold my-3 text-secondary">Alternative LogIn </h5>
+          <Button
+            onClick={handleGoogleLogin}
+            variant="outline-warning"
+            className="w-100  btnRegular"
           >
-            <div>
-              <h4 className="fw-bold text-secondary">Alternative LogIn </h4>
-              <Button
-                onClick={handleGoogleLogin}
-                variant="outline-warning"
-                className="w-100  btnRegular"
-              >
-                <FcGoogle /> Google
-              </Button>
-              <hr />
-              <h5>Don't have Account?</h5>
-              <Link to="/register">
-                {" "}
-                <Button
-                  className="w-100   btnRegular"
-                  variant="outline-warning"
-                >
-                  SignUp
-                </Button>
-              </Link>
-            </div>
-          </Col>
-          <Col sm={12} md={7} lg={7}>
-            <h2 className="fw-bold text-secondary">Welcome Back !</h2>
-            <p>Lets Get you Logged in</p>
-            <form
-              className="d-flex flex-column  "
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <input
-                className={inputStyle}
-                type="email"
-                style={{ outline: "none" }}
-                placeholder="Your Email"
-                required
-                {...register("email")}
-              />
-
-              <input
-                className={inputStyle}
-                type="password"
-                placeholder="Your Password"
-                required
-                style={{ outline: "none" }}
-                {...register("password")}
-              />
-
-              {/* error show */}
-              {error ? <p className="text-danger mt-2">{error}</p> : ""}
-              <Button type="submit" variant="outline-warning">
-                Login
-              </Button>
-            </form>{" "}
-          </Col>
-        </Row>
+            <FcGoogle /> Google
+          </Button>
+          <hr />
+          <h6>Don't have Account?</h6>
+          <Link to="/register">
+            {" "}
+            <Button className="w-100   btnRegular" variant="outline-warning">
+              SignUp
+            </Button>
+          </Link>
+        </div>
       </Container>
       {/* <Link to="/">
         {" "}
