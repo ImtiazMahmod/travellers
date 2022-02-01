@@ -36,7 +36,7 @@ const HomeBlog = () => {
               Get Your Best Experience <br /> From Your Travel
             </h1>
           </div>
-          <Row xs={1} className="g-4" sm={1} md={2} lg={2}>
+          <Row xs={1} className="g-4" sm={1} md={2} lg={3}>
             {blogs?.map((blog) => (
               <Col key={blog?._id}>
                 <SingleBlog blog={blog}></SingleBlog>
